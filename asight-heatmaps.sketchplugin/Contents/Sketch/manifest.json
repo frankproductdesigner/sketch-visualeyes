@@ -1,0 +1,32 @@
+{
+  "compatibleVersion": 3,
+  "bundleVersion": 1,
+  "icon": "icon.png",
+  "commands": [
+    {
+      "name": "Generate Heatmap",
+      "identifier": "asight-heatmaps.generate",
+      "script": "generate.js",
+      "shortcut": "cmd shift m"
+    },
+    {
+      "name": "Set your API key",
+      "identifier": "asight-heatmaps.set-api-key",
+      "script": "set-api-key.js"
+    }
+  ],
+  "menu": {
+    "title": "Asight Heatmaps",
+    "items": [
+      "asight-heatmaps.generate",
+      "asight-heatmaps.set-api-key"
+    ]
+  },
+  "version": "0.1.0",
+  "name": "Asight Heatmaps",
+  "identifier": "Asight Heatmaps",
+  "disableCocoaScriptPreprocessor": true,
+  "appcast": "https://raw.githubusercontent.com//master/.appcast.xml",
+  "author": "konsalex & dmraptis",
+  "authorEmail": "dimitrisraptis96@gmail.com"
+}
