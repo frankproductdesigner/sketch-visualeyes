@@ -4,12 +4,11 @@
   <img width="150px" src="./assets/logo.png"/>
 </div>
 <br/>
-<img src="./assets/demo.gif"/>
-<br/>
 <div align="center">
   Generate attention heatmaps without ever leaving your favorite design environment.
 </div>
-
+<br/>
+<img src="./assets/demo.gif"/>
 
 ## Installation
 - [Download](../../releases/latest/download/visualeyes.sketchplugin.zip) the latest release of the plugin
