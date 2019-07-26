@@ -1,7 +1,5 @@
 # build artefacts
-plugin.sketchplugin/Contents/Sketch
-plugin.sketchplugin/Contents/Resources/_webpack_resources
-asight-heatmaps.sketchplugin
+visualeyes.sketchplugin
 
 # npm
 node_modules
