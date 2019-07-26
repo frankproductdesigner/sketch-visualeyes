@@ -1,7 +1,7 @@
 # Visualeyes Sketch plugin
 
 <div align="center">
-  <img width="30%" src="./assets/logo.png"/>
+  <img width="100px" src="./assets/logo.png"/>
 </div>
 
 Generate attention heatmaps without ever leaving your favorite design environment.
