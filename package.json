@@ -30,6 +30,8 @@
     "@skpm/builder": "0.7.0"
   },
   "dependencies": {
-    "sketch-polyfill-fetch": "^0.4.5"
+    "global": "^4.4.0",
+    "sketch-polyfill-fetch": "^0.4.5",
+    "skpm": "^1.2.1"
   }
 }
