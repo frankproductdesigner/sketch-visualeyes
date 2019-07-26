@@ -1,7 +1,12 @@
 {
   "name": "visualeyes",
   "description": "Generate attention heatmaps in seconds",
-  "version": "0.1.0",
+  "version": "1.0.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/loceye/sketch-visualeyes.git"
+  },
+  "author": "konsalex & dmraptis <konsalexee@gmail.com> <dimitrisraptis96@gmail.com>",
   "engines": {
     "sketch": ">=3.0"
   },
@@ -24,12 +29,7 @@
   "devDependencies": {
     "@skpm/builder": "0.7.0"
   },
-  "author": "konsalex & dmraptis <konsalexee@gmail.com> <dimitrisraptis96@gmail.com>",
   "dependencies": {
     "sketch-polyfill-fetch": "^0.4.5"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/loceye/sketch-visualeyes.git"
   }
 }
