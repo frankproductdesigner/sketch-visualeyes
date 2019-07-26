@@ -145,8 +145,6 @@ export default function() {
             console.log("Finished request!");
           })
           .catch((err) => {
-            console.log(err);
-            
             console.log(`[Error]: ${JSON.stringify(err)}`);
           });
         // console.log("Finished");

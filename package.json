@@ -1,5 +1,6 @@
 {
   "name": "visualeyes",
+  "description": "Generate attention heatmaps in seconds",
   "version": "0.1.0",
   "engines": {
     "sketch": ">=3.0"
