@@ -42,7 +42,7 @@ export default function() {
           sketch.UI.message("Please enter your Asight API key first");
           return;
         }
-        UI.message("🧠 Waiting for the Prediction of the future...");
+        UI.message("🧠 Please wait for the magic heatmap...");
 
         // Setting up the options for the Artboard temporary export
         // NSTemporatyDirectory is a Cocoa Function
@@ -74,19 +74,42 @@ export default function() {
         //   mimeType: "image/jpg",
         //   data: bitmap
         // });
+        formData.append("isTransparent", "false");
         formData.append("image", "data:image/png;base64," + base64 + "");
 
-        fetch("http://localhost:8000/predict/", {
+        // const apiURL = "https://en53hszfpit7s.x.pipedream.net";
+        const apiURL = "https://api.visualeyes.loceye.io/predict/"
+
+        fetch(apiURL, {
           method: "POST",
           body: formData,
+          headers: {
+            Authorization: `Token ${apiKey}`,
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'cache-control': 'no-cache',
+          },
         })
-          .then((res) => res.json())
+          .then((res) => {
+            const {status} = res;
+            console.log(res);
+            
+            if(status === 200){
+              console.log('Successful');
+            }
+            else if(status === 400){
+              UI.message(`😱 We are deeply sorry, but something went terrible wrong!`);
+            }
+            else if(status === 403){
+              UI.message(`🚨 Your heatmaps limit has been exceeded`);
+            }
+            return res.json()
+          })
           .then((json) => {
             console.log(json);
             if (json.code !== "success") {
               throw new Error("Error during fetching the heatmap");
             }
-            const imgURL = "http://" + json.url;
+            const imgURL = json.url;
 
             const nsURL = NSURL.alloc().initWithString(imgURL);
             const nsimage = NSImage.alloc().initByReferencingURL(nsURL);
@@ -118,9 +141,12 @@ export default function() {
               parent: artboardLayer,
             });
 
+            UI.message(`🎉 Bazinga!`);
             console.log("Finished request!");
           })
           .catch((err) => {
+            console.log(err);
+            
             console.log(`[Error]: ${JSON.stringify(err)}`);
           });
         // console.log("Finished");

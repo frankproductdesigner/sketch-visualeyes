@@ -5,18 +5,18 @@
   "commands": [
     {
       "name": "Generate Heatmap",
-      "identifier": "asight-heatmaps.generate",
+      "identifier": "visualeyes.generate",
       "script": "./generate.js",
       "shortcut": "cmd shift m"
     },
     {
       "name": "Set your API key",
-      "identifier": "asight-heatmaps.set-api-key",
+      "identifier": "visualeyes.set-api-key",
       "script": "./set-api-key.js"
     }
   ],
   "menu": {
-    "title": "Asight Heatmaps",
-    "items": ["asight-heatmaps.generate", "asight-heatmaps.set-api-key"]
+    "title": "🔥 Visualeyes",
+    "items": ["visualeyes.generate", "visualeyes.set-api-key"]
   }
 }
