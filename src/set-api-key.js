@@ -11,7 +11,7 @@ export default function() {
       description = 'Find your API key on our website https://visualeyes.loceye.io.'
     }
     sketch.UI.getInputFromUser(
-      "Asight API Key",
+      "Visualeyes API Key",
       {
         description,
         okButton: "Save API Key"
