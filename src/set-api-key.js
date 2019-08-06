@@ -3,14 +3,17 @@ import sketch from "sketch";
 export default function() {
   return new Promise((resolve, reject) => {
     const apiKey = sketch.Settings.settingForKey("api-key");
-    let message = "";
+    let description = "";
     if (apiKey) {
-      message = `\nYou current API key is: ${apiKey}`;
+      description = `Change your API key on our website https://visualeyes.loceye.io.\n\nYou current API key is: ${apiKey}`;
+    }
+    else {
+      description = 'Find your API key on our website https://visualeyes.loceye.io.'
     }
     sketch.UI.getInputFromUser(
-      "Asight API Key",
+      "Visualeyes API Key",
       {
-        description: `You can find your API key on Link.${message}`,
+        description,
         okButton: "Save API Key"
       },
       (err, value) => {

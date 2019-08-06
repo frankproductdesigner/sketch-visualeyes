@@ -1,6 +1,5 @@
 import sketch, { UI } from "sketch";
 import setApiKey from "./set-api-key";
-import { Image, Document } from "sketch/dom";
 
 function getApiKey() {
   // Check if user's api Key is stored
@@ -41,7 +40,7 @@ export default function() {
           sketch.UI.message("Please enter your Asight API key first");
           return;
         }
-        UI.message("🧠 Waiting for the prediction of the future...");
+        UI.message("🧠 Please wait for the magic heatmap...");
 
         // Set up the Artboard options for the temporary export
         // NSTemporatyDirectory is a Cocoa Function
@@ -77,18 +76,43 @@ export default function() {
         formData.append("isTransparent", "true");
         formData.append("image", "data:image/png;base64," + base64 + "");
 
-        const apiURL = "http://localhost:8000/predict/";
+        // const apiURL = "https://en53hszfpit7s.x.pipedream.net";
+        const apiURL = "https://api.visualeyes.loceye.io/predict/";
+
         fetch(apiURL, {
           method: "POST",
           body: formData,
+          headers: {
+            Authorization: `Token ${apiKey}`,
+            "Content-Type": "application/x-www-form-urlencoded",
+            "cache-control": "no-cache",
+          },
         })
-          .then((res) => res.json())
+          .then((res) => {
+            const { status } = res;
+            console.log(res);
+            if (status === 200) {
+              console.log("Successful");
+            } else if (status === 400) {
+              UI.message(
+                `😱 We are deeply sorry, but something went terrible wrong!`
+              );
+            } else if (status === 403) {
+              UI.message(`🚨 Your heatmaps limit has been exceeded`);
+            } else if (status === 401) {
+              UI.alert(
+                "Invalid API key",
+                `If this have a valid key go to the plugin setting and click "Set your API key".\n\nYou can claim a valid token at https://visualeyes.loceye.io`
+              );
+            }
+            return res.json();
+          })
           .then((json) => {
             console.log(json);
             if (json.code !== "success") {
               throw new Error("Error during fetching the heatmap");
             }
-            const imgURL = "http://" + json.url;
+            const imgURL = json.url;
 
             const nsURL = NSURL.alloc().initWithString(imgURL);
             const nsimage = NSImage.alloc().initByReferencingURL(nsURL);
@@ -119,10 +143,12 @@ export default function() {
               },
               parent: artboardLayer,
             });
-            sketch.UI.message("Enjoy your attention heatmap! 🔥");
+
+            UI.message(`🎉 Bazinga!`);
+            console.log("Finished request!");
           })
           .catch((err) => {
-            sketch.UI.message("Sorry but something went wrong! 😭");
+            UI.message("Sorry but something went wrong! 😭");
             console.log(`[Error]: ${JSON.stringify(err)}`);
           });
       });

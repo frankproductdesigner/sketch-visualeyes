@@ -1,13 +1,19 @@
 {
-  "name": "asight-heatmaps",
-  "version": "0.1.0",
+  "name": "visualeyes",
+  "description": "Generate attention heatmaps in seconds",
+  "version": "2.0.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/loceye/sketch-visualeyes.git"
+  },
+  "author": "konsalex & dmraptis <konsalexee@gmail.com> <dimitrisraptis96@gmail.com>",
   "engines": {
     "sketch": ">=3.0"
   },
   "skpm": {
-    "name": "Asight Heatmaps",
+    "name": "Visualeyes",
     "manifest": "src/manifest.json",
-    "main": "asight-heatmaps.sketchplugin",
+    "main": "visualeyes.sketchplugin",
     "assets": [
       "assets/**/*"
     ],
@@ -17,13 +23,14 @@
     "build": "skpm-build",
     "watch": "skpm-build --watch",
     "start": "skpm-build --watch --run",
-    "postinstall": "npm run build && skpm-link"
+    "postinstall": "npm run build && skpm-link && npm run"
   },
   "devDependencies": {
     "@skpm/builder": "0.7.0"
   },
-  "author": "konsalex & dmraptis <konsalexee@gmail.com> <dimitrisraptis96@gmail.com>",
   "dependencies": {
-    "sketch-polyfill-fetch": "^0.4.5"
+    "global": "^4.4.0",
+    "sketch-polyfill-fetch": "^0.4.5",
+    "skpm": "^1.2.1"
   }
 }
