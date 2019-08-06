@@ -37,7 +37,7 @@ export default function() {
     if (artboardLayer.type !== "Artboard") {
       UI.message("Please select an Αrtboard 🤓");
     } else {
-      getApiKey().then((apiKey) => {
+      getApiKey().then(apiKey => {
         if (!apiKey) {
           sketch.UI.message("Please enter your Asight API key first");
           return;
@@ -53,7 +53,7 @@ export default function() {
           formats: "jpg",
           output: exportPath,
           compression: 0.7,
-          "use-id-for-name": true,
+          "use-id-for-name": true
         };
 
         // Save the image temporary
@@ -74,37 +74,41 @@ export default function() {
         //   mimeType: "image/jpg",
         //   data: bitmap
         // });
-        formData.append("isTransparent", "false");
+        formData.append("isTransparent", "true");
         formData.append("image", "data:image/png;base64," + base64 + "");
 
         // const apiURL = "https://en53hszfpit7s.x.pipedream.net";
-        const apiURL = "https://api.visualeyes.loceye.io/predict/"
+        const apiURL = "https://api.visualeyes.loceye.io/predict/";
 
         fetch(apiURL, {
           method: "POST",
           body: formData,
           headers: {
             Authorization: `Token ${apiKey}`,
-            'Content-Type': 'application/x-www-form-urlencoded',
-            'cache-control': 'no-cache',
-          },
+            "Content-Type": "application/x-www-form-urlencoded",
+            "cache-control": "no-cache"
+          }
         })
-          .then((res) => {
-            const {status} = res;
+          .then(res => {
+            const { status } = res;
             console.log(res);
-            
-            if(status === 200){
-              console.log('Successful');
-            }
-            else if(status === 400){
-              UI.message(`😱 We are deeply sorry, but something went terrible wrong!`);
-            }
-            else if(status === 403){
+            if (status === 200) {
+              console.log("Successful");
+            } else if (status === 400) {
+              UI.message(
+                `😱 We are deeply sorry, but something went terrible wrong!`
+              );
+            } else if (status === 403) {
               UI.message(`🚨 Your heatmaps limit has been exceeded`);
+            } else if (status === 401) {
+              UI.alert(
+                "Invalid API key",
+                `If this have a valid key go to the plugin setting and click "Set your API key".\n\nYou can claim a valid token at https://visualeyes.loceye.io`
+              );
             }
-            return res.json()
+            return res.json();
           })
-          .then((json) => {
+          .then(json => {
             console.log(json);
             if (json.code !== "success") {
               throw new Error("Error during fetching the heatmap");
@@ -116,7 +120,7 @@ export default function() {
 
             return nsimage;
           })
-          .then((nsimage) => {
+          .then(nsimage => {
             const x = 0;
             const y = 0;
             const { width, height } = artboardLayer.frame;
@@ -133,18 +137,18 @@ export default function() {
                     fill: "Pattern",
                     pattern: {
                       patternType: sketch.Style.PatternFillType.Fill,
-                      image: nsimage,
-                    },
-                  },
-                ],
+                      image: nsimage
+                    }
+                  }
+                ]
               },
-              parent: artboardLayer,
+              parent: artboardLayer
             });
 
             UI.message(`🎉 Bazinga!`);
             console.log("Finished request!");
           })
-          .catch((err) => {
+          .catch(err => {
             console.log(`[Error]: ${JSON.stringify(err)}`);
           });
         // console.log("Finished");
