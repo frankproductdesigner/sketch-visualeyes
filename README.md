@@ -1,4 +1,4 @@
-# Visualeyes Sketch plugin
+# VisualEyes Sketch plugin
 
 <div align="center">
   <img width="150px" src="./assets/logo.png"/>
