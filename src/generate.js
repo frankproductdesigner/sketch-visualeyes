@@ -1,6 +1,5 @@
 import sketch, { UI } from "sketch";
 import setApiKey from "./set-api-key";
-import fetch from "sketch-polyfill-fetch";
 import { Image, Document } from "sketch/dom";
 
 function getApiKey() {
@@ -42,9 +41,9 @@ export default function() {
           sketch.UI.message("Please enter your Asight API key first");
           return;
         }
-        UI.message("🧠 Waiting for the Prediction of the future...");
+        UI.message("🧠 Waiting for the prediction of the future...");
 
-        // Setting up the options for the Artboard temporary export
+        // Set up the Artboard options for the temporary export
         // NSTemporatyDirectory is a Cocoa Function
         // https://developer.apple.com/documentation/foundation/1409211-nstemporarydirectory
         const artboardID = artboardLayer.id;
@@ -63,7 +62,8 @@ export default function() {
           ),
           bitmap = NSData.alloc().initWithContentsOfURL(url),
           base64 = bitmap.base64EncodedStringWithOptions(0);
-        // // Remove the image from temp folder
+
+        // // Remove the image from the temp folder
         NSFileManager.defaultManager().removeItemAtURL_error(url, nil);
 
         // Now I have the Artboard as a base64 file and I can send it to our API
@@ -74,9 +74,11 @@ export default function() {
         //   mimeType: "image/jpg",
         //   data: bitmap
         // });
+        formData.append("isTransparent", "true");
         formData.append("image", "data:image/png;base64," + base64 + "");
 
-        fetch("http://localhost:8000/predict/", {
+        const apiURL = "http://localhost:8000/predict/";
+        fetch(apiURL, {
           method: "POST",
           body: formData,
         })
@@ -117,13 +119,12 @@ export default function() {
               },
               parent: artboardLayer,
             });
-
-            console.log("Finished request!");
+            sketch.UI.message("Enjoy your attention heatmap! 🔥");
           })
           .catch((err) => {
+            sketch.UI.message("Sorry but something went wrong! 😭");
             console.log(`[Error]: ${JSON.stringify(err)}`);
           });
-        // console.log("Finished");
       });
     }
   }

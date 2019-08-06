@@ -1,7 +1,7 @@
 {
   "compatibleVersion": 3,
   "bundleVersion": 1,
-  "icon": "icon.png",
+  "icon": "logo.png",
   "commands": [
     {
       "name": "Generate Heatmap",
@@ -16,7 +16,7 @@
     }
   ],
   "menu": {
-    "title": "Asight Heatmaps",
+    "title": "🔥 Asight Heatmaps",
     "items": ["asight-heatmaps.generate", "asight-heatmaps.set-api-key"]
   }
 }
