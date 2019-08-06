@@ -1,7 +1,7 @@
 # Visualeyes Sketch plugin
 
 <div align="center">
-  <img width="150px" src="./assets/logo.png"/>
+  <img width="150px" src="./assets/icon.png"/>
 </div>
 <br/>
 <div align="center">
@@ -11,6 +11,7 @@
 <img src="./assets/demo.gif"/>
 
 ## Installation
+
 - [Download](../../releases/latest/download/visualeyes.sketchplugin.zip) the latest release of the plugin
 - Un-zip
 - Double-click on visualeyes.sketchplugin
