@@ -1,7 +1,7 @@
 # Visualeyes Sketch plugin
 
 <div align="center">
-  <img width="150px" src="./assets/icon.png"/>
+  <img width="150px" src="./assets/logo.png"/>
 </div>
 <br/>
 <div align="center">
