@@ -97,13 +97,13 @@ export default function() {
               UI.message(
                 `😱 We are deeply sorry, but something went terrible wrong!`
               );
-            } else if (status === 403) {
-              UI.message(`🚨 Your heatmaps limit has been exceeded`);
             } else if (status === 401) {
               UI.alert(
                 "Invalid API key",
-                `If this have a valid key go to the plugin setting and click "Set your API key".\n\nYou can claim a valid token at https://visualeyes.loceye.io`
+                'If you have a valid API key, you can set it at:\n "Plugins / 🔥 Visualeyes / Set your API key".\n\nYou can claim a valid token at https://visualeyes.loceye.io'
               );
+            } else if (status === 403) {
+              UI.message(`🚨 Your heatmaps limit has been exceeded`);
             }
             return res.json();
           })
@@ -148,7 +148,6 @@ export default function() {
             console.log("Finished request!");
           })
           .catch((err) => {
-            UI.message("Sorry but something went wrong! 😭");
             console.log(`[Error]: ${JSON.stringify(err)}`);
           });
       });
