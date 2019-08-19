@@ -145,7 +145,7 @@ export default function() {
             });
 
             UI.message(`🎉 Bazinga!`);
-            console.log("Finished request!");
+            // console.log("Finished request!");
           })
           .catch((err) => {
             console.log(`[Error]: ${JSON.stringify(err)}`);
