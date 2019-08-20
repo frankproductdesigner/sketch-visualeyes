@@ -74,6 +74,7 @@ export default function() {
         //   data: bitmap
         // });
         formData.append("isTransparent", "true");
+        formData.append("platform", "sketch");
         formData.append("image", "data:image/png;base64," + base64 + "");
 
         // const apiURL = "https://en53hszfpit7s.x.pipedream.net";
@@ -144,8 +145,8 @@ export default function() {
               parent: artboardLayer,
             });
 
-            UI.message(`🎉 Bazinga!`);
             // console.log("Finished request!");
+            UI.message(`🎉 Bazinga!`);
           })
           .catch((err) => {
             console.log(`[Error]: ${JSON.stringify(err)}`);
